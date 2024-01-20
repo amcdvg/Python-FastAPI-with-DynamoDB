@@ -3,7 +3,12 @@ from config.config import settings
 from Routers.router import api_router
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
+import os
 
+#Set AWS credentials as environment variables
+#os.environ["AWS_ACCESS_KEY_ID"] = "your-access-key-id"
+#os.environ["AWS_SECRET_ACCESS_KEY"] = "your-secret-access-key"
+#os.environ["AWS_DEFAULT_REGION"] = "your-default-region"
 
 def get_application() -> FastAPI:
     tags_metadata = [
@@ -36,5 +41,7 @@ def get_application() -> FastAPI:
     
     return application
 
+
 app = get_application()
+
 handler = Mangum(app)
